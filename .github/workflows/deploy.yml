@@ -16,12 +16,12 @@ jobs:
         with:
           node-version: 20
       - name: Install
-        run: npm ci
+        run: yarn install
       - name: Build & Export
         run: |
-          npm run build
+          yarn build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}s
           publish_dir: ./out
