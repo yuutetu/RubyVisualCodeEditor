@@ -1,8 +1,11 @@
 'use client';
-import {BlocklyWorkspace} from "react-blockly";
+import {BlocklyWorkspace, useBlocklyWorkspace} from "react-blockly";
 import '@/service/blockly/blocks';
+import {useRef} from "react";
+import Ruby from "@/service/blockly/ruby_generator";
 
 export default function Home() {
+
   return (
     <div className="h-dvh flex flex-col">
       <header className="p-2 flex justify-between border-b">
@@ -23,14 +26,14 @@ export default function Home() {
 const MY_TOOLBOX = `
 <xml>
   <category name="IO">
-    <block type="io_read_tokens"/>
-    <block type="io_puts"/>
+    <block type="io_read_line"/>
+<!--    <block type="io_puts"/>-->
   </category>
   <category name="値/演算">
 <!--    <block type="math_number"/>-->
-<!--    <block type="variables_set"/>-->
+    <block type="variables_set"/>
 <!--    <block type="variables_get"/>-->
-    <block type="math_arithmetic"/>
+<!--    <block type="math_arithmetic"/>-->
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
