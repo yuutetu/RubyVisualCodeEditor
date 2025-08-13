@@ -90,7 +90,3 @@ const generators = {
 for (const [name, fn] of Object.entries(generators)) {
   rubyGenerator.forBlock[name] = fn
 }
-
-// for (const name of Object.keys(generators) as (keyof typeof generators)) {
-//   rubyGenerator.forBlock[name] = generators[name];
-// }
