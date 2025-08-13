@@ -11,6 +11,16 @@ export const variables_set = (
   return varName + ' = ' + argument0 + '\n';
 }
 
+export const variables_get = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Variable getter.
+  const varName = generator.getVariableName(block.getFieldValue('VAR'));
+  return [varName, RUBY_ORDER.ATOMIC];
+}
+
 export const generators = {
-  variables_set
+  variables_set,
+  variables_get,
 }

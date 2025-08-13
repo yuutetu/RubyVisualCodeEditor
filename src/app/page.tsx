@@ -25,7 +25,7 @@ export default function Home() {
     if (!ws) return
     console.log('Generating code from Blockly workspace:', ws)
     const generated = rubyGenerator.workspaceToCode(ws)
-    setCode(`# Generated for AtCoder A\n${generated}`)
+    setCode(generated)
     setDrawerOpen(true);
   }, [ws]);
 
@@ -46,13 +46,6 @@ export default function Home() {
       <div className="flex-1 z-0">
         <div ref={ref} className="w-full h-full" />
       </div>
-      <footer className="fixed inset-x-0 bottom-0 bg-black border-t
-                   flex gap-2 p-2"
-        style={{paddingBottom: 'calc(env(safe-area-inset-bottom) + 8px)'}}>
-        <button className="flex-1 h-12 rounded-lg" onClick={() => openDrawerAndGenerate()}>
-          コード表示
-        </button>
-      </footer>
       {/* 全画面 Drawer */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 bg-white flex flex-col">
@@ -89,22 +82,28 @@ export default function Home() {
   );
 }
 
+// preset blocks list https://github.com/google/blockly/tree/develop/blocks
 const MY_TOOLBOX = `
 <xml>
   <category name="IO">
     <block type="io_read_line"/>
-<!--    <block type="io_puts"/>-->
+    <block type="io_puts"/>
+  </category>
+  <category name="リテラル">
+    <block type="text"/>
   </category>
   <category name="値/演算">
 <!--    <block type="math_number"/>-->
     <block type="variables_set"/>
-<!--    <block type="variables_get"/>-->
+    <block type="variables_get"/>
+    <block type="string_slice"/>
 <!--    <block type="math_arithmetic"/>-->
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
-<!--  <category name="制御">-->
-<!--    <block type="controls_if"/>-->
-<!--  </category>-->
+  <category name="制御">
+    <block type="controls_if"/>
+    <block type="logic_compare"/>
+  </category>
 </xml>
 `
