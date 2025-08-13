@@ -39,8 +39,11 @@ export default function Home() {
     <div className="h-dvh flex flex-col">
       <header className="p-2 flex justify-between border-b">
         Ruby Block Editor
+        <button className="rounded-lg" onClick={() => openDrawerAndGenerate()}>
+          Gen Ruby Code
+        </button>
       </header>
-      <div className="flex-1">
+      <div className="flex-1 z-0">
         <div ref={ref} className="w-full h-full" />
       </div>
       <footer className="fixed inset-x-0 bottom-0 bg-black border-t
