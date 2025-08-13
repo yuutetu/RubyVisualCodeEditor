@@ -1,11 +1,8 @@
-'use client';
-import {BlocklyWorkspace, useBlocklyWorkspace} from "react-blockly";
-import '@/service/blockly/blocks';
-import {useRef} from "react";
-import Ruby from "@/service/blockly/ruby_generator";
+'use client'
+import {BlocklyWorkspace} from "react-blockly"
+import '@/service/blockly/blocks'
 
 export default function Home() {
-
   return (
     <div className="h-dvh flex flex-col">
       <header className="p-2 flex justify-between border-b">
@@ -15,8 +12,8 @@ export default function Home() {
         <BlocklyWorkspace
           initialXml="<xml></xml>"
           toolboxConfiguration={MY_TOOLBOX}
-          trashcan
           className="w-full h-full"
+          workspaceConfiguration={{}}
         />
       </div>
     </div>
@@ -25,10 +22,10 @@ export default function Home() {
 
 const MY_TOOLBOX = `
 <xml>
-  <category name="IO">
-    <block type="io_read_line"/>
+<!--  <category name="IO">-->
+<!--    <block type="io_read_line"/>-->
 <!--    <block type="io_puts"/>-->
-  </category>
+<!--  </category>-->
   <category name="値/演算">
 <!--    <block type="math_number"/>-->
     <block type="variables_set"/>
