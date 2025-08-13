@@ -87,6 +87,7 @@ const MY_TOOLBOX = `
 <xml>
   <category name="IO">
     <block type="io_read_line"/>
+    <block type="io_read_numbers"/>
     <block type="io_puts"/>
   </category>
   <category name="リテラル">
@@ -97,7 +98,9 @@ const MY_TOOLBOX = `
     <block type="variables_set"/>
     <block type="variables_get"/>
     <block type="string_slice"/>
-<!--    <block type="math_arithmetic"/>-->
+    <block type="math_arithmetic"/>
+    <block type="array_get_index"/>
+    <block type="array_slice"/>
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>

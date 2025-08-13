@@ -13,7 +13,7 @@ export const string_slice = (
 ): [string, number] => {
   // Get slice from string.
   const string = generator.valueToCode(block, 'String', RUBY_ORDER.NONE) || '""';
-  const range = block.getFieldValue('range') || '0..-1';
+  const range = block.getFieldValue('Range') || '0..-1';
   return [`${string}[${range}]`, RUBY_ORDER.ATOMIC];
 }
 

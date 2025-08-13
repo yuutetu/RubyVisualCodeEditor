@@ -3,15 +3,36 @@ import * as Blockly from 'blockly/core'
 // Tool: https://google.github.io/blockly-samples/examples/developer-tools/index.html
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
-    "type": "string_slice",
+    "type": "array_get_index",
+    "tooltip": "Get an item from array",
+    "helpUrl": "",
+    "message0": "get item %1 from array %2",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "Index",
+        "check": "Number",
+        "text": "0"
+      },
+      {
+        "type": "input_value",
+        "name": "Array",
+        "check": "Array"
+      }
+    ],
+    "output": "String",
+    "colour": 270,
+  },
+  {
+    "type": "array_slice",
     "tooltip": "Get slice from array",
     "helpUrl": "",
     "message0": "slice %1 from %2",
     "args0": [
       {
         "type": "input_value",
-        "name": "String",
-        "check": "String"
+        "name": "Array",
+        "check": "Array"
       },
       {
         "type": "field_input",
@@ -19,7 +40,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "check": "String"
       },
     ],
-    "output": "String",
+    "output": "Array",
     "colour": 270,
   }
 ])

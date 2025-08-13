@@ -10,11 +10,17 @@ const io_puts = (
   generator: RubyGenerator,
 ): string => {
   const argument0 = generator.valueToCode(block, 'VALUE', RUBY_ORDER.NONE) || '""';
-  return `puts ${argument0}`
+  return `puts ${argument0}\n`
+}
 
+const io_read_numbers = (): [string, number] => {
+  // This is a placeholder for reading multiple numbers from input.
+  // In Ruby, you might read a line and split it into numbers.
+  return ["gets.chomp.split.map(&:to_i)", RUBY_ORDER.ATOMIC]
 }
 
 export const generators = {
   io_read_line,
   io_puts,
+  io_read_numbers,
 }

@@ -25,6 +25,14 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "previousStatement": null,
     "nextStatement": null,
     "colour": 270,
+  },
+  {
+    "type": "io_read_numbers",
+    "tooltip": "Read multiple numbers",
+    "helpUrl": "",
+    "message0": "read numbers of line",
+    "output": "Array",
+    "colour": 270,
   }
 ])
 
