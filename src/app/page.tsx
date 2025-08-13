@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 const ReactCodeMirror = dynamic(() => import('@uiw/react-codemirror'), { ssr: false });
 
 export default function Home() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const {workspace: ws} = useBlocklyWorkspace({
     ref: ref,
     initialXml: "<xml></xml>",
@@ -39,8 +39,11 @@ export default function Home() {
     <div className="h-dvh flex flex-col">
       <header className="p-2 flex justify-between border-b">
         Ruby Block Editor
+        <button className="rounded-lg" onClick={() => openDrawerAndGenerate()}>
+          Gen Ruby Code
+        </button>
       </header>
-      <div className="flex-1">
+      <div className="flex-1 z-0">
         <div ref={ref} className="w-full h-full" />
       </div>
       <footer className="fixed inset-x-0 bottom-0 bg-black border-t
