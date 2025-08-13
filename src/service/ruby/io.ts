@@ -1,9 +1,7 @@
-import * as Blockly from 'blockly/core'
-import {rubyGenerator} from "./ruby";
-import {RubyOrder} from "@/service/ruby/ruby_generator";
+import {RUBY_ORDER} from "./ruby";
 
-const io_read_line = (block: Blockly.Block, generator: rubyGenerator) => {
-  return ["gets.chomp\n", RubyOrder.ATOMIC]
+const io_read_line = (): [string, number] => {
+  return ["gets.chomp\n", RUBY_ORDER.ATOMIC]
 }
 
 export const generators = {

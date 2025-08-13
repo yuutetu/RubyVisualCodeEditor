@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 const ReactCodeMirror = dynamic(() => import('@uiw/react-codemirror'), { ssr: false });
 
 export default function Home() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const {workspace: ws} = useBlocklyWorkspace({
     ref: ref,
     initialXml: "<xml></xml>",

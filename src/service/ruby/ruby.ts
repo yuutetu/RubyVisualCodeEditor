@@ -4,22 +4,49 @@ import * as variables from './variables'
 import * as Blockly from 'blockly/core';
 import {Block, CodeGenerator} from "blockly/core";
 
-interface RubyGenerator extends CodeGenerator {
-  nameDB_: Blockly.Names;
-  definitions_: Record<string, string>;
-  functionNames_: Record<string, string>;
-  blockToCode: (block: Blockly.Block | null) => string;
-  prefixLines: (text: string, prefix: string) => string;
-  scrub_: (block: Blockly.Block, code: string) => string;
-  quote_: (string: string) => string;
-  RESERVED_WORDS_: string;
+export class RubyGenerator extends CodeGenerator {
+  // nameDB_: Blockly.Names;
+  // definitions_: Record<string, string>;
+  // functionNames_: Record<string, string>;
+  // blockToCode: (block: Blockly.Block | null) => string;
+  // prefixLines: (text: string, prefix: string) => string;
+  // scrub_: (block: Blockly.Block, code: string) => string;
+  // quote_: (string: string) => string;
+  // RESERVED_WORDS_: string;
+
+  getReservedWords() {
+    return this.RESERVED_WORDS_;
+  }
+
+  getDefinitions() {
+    return this.definitions_ || {};
+  }
+
+  setDefinitions(definitions: Record<string, string>) {
+    this.definitions_ = definitions;
+  }
+  setFunctionNames(functionNames: Record<string, string>) {
+    this.functionNames_ = functionNames;
+  }
+
+  resetNameDB() {
+    if (this.nameDB_) {
+      this.nameDB_.reset();
+    }
+  }
+
+  // Generator実装用helper関数
+  // 引用符処理
+  quote_(string: string) {
+    return `"${string.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
+  }
 }
 
 // Generator インスタンス作成
-export const rubyGenerator = new Blockly.Generator('Ruby') as RubyGenerator;
+export const rubyGenerator = new RubyGenerator('Ruby');
 
 // 優先順位定数をオブジェクトで定義
-const RUBY_ORDER = {
+export const RUBY_ORDER = {
   ATOMIC: 0,
   UNARY: 1,
   MULTIPLICATIVE: 2,
@@ -31,23 +58,18 @@ const RUBY_ORDER = {
   NONE: 99,
 } as const;
 
-// Ruby の予約語を設定
-rubyGenerator.addReservedWords(
-  'alias,and,BEGIN,break,case,class,def,defined?,do,else,elsif,end,ensure,false,for,if,in,module,next,nil,not,or,redo,rescue,retry,return,self,super,then,true,undef,unless,until,when,while,yield'
-);
-
 // 初期化処理（変数名管理など）
 rubyGenerator.init = (workspace) => {
-  rubyGenerator.nameDB_ = new Blockly.Names(rubyGenerator.RESERVED_WORDS_);
+  rubyGenerator.nameDB_ = new Blockly.Names(rubyGenerator.getReservedWords());
   rubyGenerator.nameDB_.setVariableMap(workspace.getVariableMap());
-  rubyGenerator.definitions_ = Object.create({});
-  rubyGenerator.functionNames_ = Object.create({});
+  rubyGenerator.setDefinitions(Object.create({}))
+  rubyGenerator.setFunctionNames(Object.create({}))
 };
 
 // 終了処理（require などをコード先頭に追加）
 rubyGenerator.finish = (code) => {
-  const requires = Object.values(rubyGenerator.definitions_ || {}).join('\n');
-  rubyGenerator.nameDB_.reset();
+  const requires = Object.values(rubyGenerator.getDefinitions() || {}).join('\n');
+  rubyGenerator.resetNameDB();
   return [requires, code].filter(Boolean).join('\n\n');
 };
 
@@ -60,23 +82,15 @@ rubyGenerator.scrub_ = (block, code) => {
   return commentCode + code + nextCode;
 };
 
-// 文字列の引用符処理（シンプルなダブルクォート）
-rubyGenerator.quote_ = (string) =>
-  `"${string.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
-
-// ワークスペース全体のコード生成
-rubyGenerator.workspaceToCode = (workspace) => {
-  if (!workspace) return '';
-  rubyGenerator.init(workspace);
-  const topBlocks = workspace.getTopBlocks(true);
-  const code = rubyGenerator.blockToCode(topBlocks[0] || null) || '';
-  return rubyGenerator.finish(code);
-};
-
 const generators = {
   ...io.generators,
   ...variables.generators,
+} satisfies Record<string, (block: Block, generator: RubyGenerator) => (string | [string, number] | null) | (() => (string | [string, number] | null))>;
+
+for (const [name, fn] of Object.entries(generators)) {
+  rubyGenerator.forBlock[name] = fn
 }
-for (const name in generators) {
-  rubyGenerator.forBlock[name] = generators[name];
-}
+
+// for (const name of Object.keys(generators) as (keyof typeof generators)) {
+//   rubyGenerator.forBlock[name] = generators[name];
+// }
