@@ -2,6 +2,8 @@ import * as io from './io'
 import * as variables from './variables'
 import * as string from './string'
 import * as logic from './logic';
+import * as math from './math';
+import * as array from './array';
 
 import * as Blockly from 'blockly/core';
 import {Block, CodeGenerator} from "blockly/core";
@@ -47,18 +49,29 @@ export class RubyGenerator extends CodeGenerator {
 // Generator インスタンス作成
 export const rubyGenerator = new RubyGenerator('Ruby');
 
-// 優先順位定数をオブジェクトで定義
+// 優先順位定数をオブジェクトで定義。以下のルールに従って定義する
 export const RUBY_ORDER = {
-  ATOMIC: 0,
-  UNARY: 1,
-  MULTIPLICATIVE: 2,
-  ADDITIVE: 3,
-  RELATIONAL: 4,
-  EQUALITY: 5,
-  LOGICAL_AND: 6,
-  LOGICAL_OR: 7,
-  NONE: 99,
+  ATOMIC: 0,             // 0 "" ...
+  MEMBER: 2,             // . []
+  FUNCTION_CALL: 2,      // ()
+  EXPONENTIATION: 3,     // **
+  LOGICAL_NOT: 4,        // !
+  UNARY_SIGN: 4,         // + -
+  BITWISE_NOT: 4,        // ~
+  MULTIPLICATIVE: 5,     // * / // %
+  ADDITIVE: 6,           // + -
+  BITWISE_SHIFT: 7,      // << >>
+  BITWISE_AND: 8,        // &
+  BITWISE_XOR: 9,        // ^
+  BITWISE_OR: 9,         // |
+  RELATIONAL: 11,        // <, <=, >, >=, <>, !=, ==
+  LOGICAL_AND: 13,       // &&
+  LOGICAL_OR: 14,        // ||
+  CONDITIONAL: 15,       // if unless while until
+  NONE: 99,              // (...)
 } as const;
+
+export type RubyOrder = typeof RUBY_ORDER[keyof typeof RUBY_ORDER];
 
 // 初期化処理（変数名管理など）
 rubyGenerator.init = (workspace) => {
@@ -89,6 +102,8 @@ const generators = {
   ...variables.generators,
   ...string.generators,
   ...logic.generators,
+  ...math.generators,
+  ...array.generators,
 } satisfies Record<string, (block: Block, generator: RubyGenerator) => (string | [string, number] | null) | (() => (string | [string, number] | null))>;
 
 for (const [name, fn] of Object.entries(generators)) {
