@@ -9,6 +9,22 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "message0": "read line",
     "output": "String",
     "colour": 270
+  },
+  {
+    "type": "io_puts",
+    "tooltip": "Print",
+    "helpUrl": "",
+    "message0": "puts %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "VALUE",
+        "check": "String"
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 270,
   }
 ])
 

@@ -25,7 +25,7 @@ export default function Home() {
     if (!ws) return
     console.log('Generating code from Blockly workspace:', ws)
     const generated = rubyGenerator.workspaceToCode(ws)
-    setCode(`# Generated for AtCoder A\n${generated}`)
+    setCode(generated)
     setDrawerOpen(true);
   }, [ws]);
 
@@ -93,12 +93,12 @@ const MY_TOOLBOX = `
 <xml>
   <category name="IO">
     <block type="io_read_line"/>
-<!--    <block type="io_puts"/>-->
+    <block type="io_puts"/>
   </category>
   <category name="値/演算">
 <!--    <block type="math_number"/>-->
     <block type="variables_set"/>
-<!--    <block type="variables_get"/>-->
+    <block type="variables_get"/>
 <!--    <block type="math_arithmetic"/>-->
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
