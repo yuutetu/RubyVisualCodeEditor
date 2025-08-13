@@ -1,6 +1,7 @@
 import * as io from './io'
 import * as variables from './variables'
 import * as string from './string'
+import * as logic from './logic';
 
 import * as Blockly from 'blockly/core';
 import {Block, CodeGenerator} from "blockly/core";
@@ -87,6 +88,7 @@ const generators = {
   ...io.generators,
   ...variables.generators,
   ...string.generators,
+  ...logic.generators,
 } satisfies Record<string, (block: Block, generator: RubyGenerator) => (string | [string, number] | null) | (() => (string | [string, number] | null))>;
 
 for (const [name, fn] of Object.entries(generators)) {

@@ -1,6 +1,12 @@
 import * as Blockly from 'blockly/core'
 import {RUBY_ORDER, RubyGenerator} from "./ruby";
 
+export const text = (block: Blockly.Block, generator: RubyGenerator): [string, number] => {
+  // Text block.
+  const text = block.getFieldValue('TEXT') || '';
+  return [generator.quote_(text), RUBY_ORDER.ATOMIC];
+}
+
 export const string_slice = (
   block: Blockly.Block,
   generator: RubyGenerator,
@@ -12,5 +18,6 @@ export const string_slice = (
 }
 
 export const generators = {
+  text,
   string_slice,
 }

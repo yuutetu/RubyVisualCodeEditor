@@ -89,6 +89,9 @@ const MY_TOOLBOX = `
     <block type="io_read_line"/>
     <block type="io_puts"/>
   </category>
+  <category name="リテラル">
+    <block type="text"/>
+  </category>
   <category name="値/演算">
 <!--    <block type="math_number"/>-->
     <block type="variables_set"/>
@@ -98,8 +101,9 @@ const MY_TOOLBOX = `
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
-<!--  <category name="制御">-->
-<!--    <block type="controls_if"/>-->
-<!--  </category>-->
+  <category name="制御">
+    <block type="controls_if"/>
+    <block type="logic_compare"/>
+  </category>
 </xml>
 `
