@@ -1,6 +1,6 @@
 'use client'
 import {BlocklyWorkspace} from "react-blockly"
-import '@/service/blockly/blocks'
+import '@/service/blocks/blocks'
 
 export default function Home() {
   return (
@@ -22,10 +22,10 @@ export default function Home() {
 
 const MY_TOOLBOX = `
 <xml>
-<!--  <category name="IO">-->
-<!--    <block type="io_read_line"/>-->
+  <category name="IO">
+    <block type="io_read_line"/>
 <!--    <block type="io_puts"/>-->
-<!--  </category>-->
+  </category>
   <category name="値/演算">
 <!--    <block type="math_number"/>-->
     <block type="variables_set"/>
