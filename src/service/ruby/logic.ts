@@ -49,7 +49,7 @@ export const logic_compare = (
   return [`${argument0} ${operator} ${argument1}`, RUBY_ORDER.RELATIONAL];
 }
 
-export const call_bool_method = (
+const call_bool_method = (
   block: Blockly.Block,
   generator: RubyGenerator,
 ): [string, number] => {
@@ -60,7 +60,7 @@ export const call_bool_method = (
   return [`${object}.${method}?(${args})`, RUBY_ORDER.ATOMIC];
 }
 
-export const call_number_method = (
+const call_number_method = (
   block: Blockly.Block,
   generator: RubyGenerator,
 ): [string, number] => {
@@ -71,7 +71,7 @@ export const call_number_method = (
   return [`${object}.${method}(${args})`, RUBY_ORDER.ATOMIC];
 }
 
-export const call_string_method = (
+const call_string_method = (
   block: Blockly.Block,
   generator: RubyGenerator,
 ): [string, number] => {
@@ -82,10 +82,21 @@ export const call_string_method = (
   return [`${object}.${method}(${args})`, RUBY_ORDER.ATOMIC];
 }
 
+const times = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): string => {
+  // Loop a specific number of times.
+  const times = generator.valueToCode(block, 'TIMES', RUBY_ORDER.NONE) || '0';
+  const branch = generator.statementToCode(block, 'DO') || '';
+  return `${times}.times do\n${branch}end\n`;
+}
+
 export const generators = {
   controls_if,
   logic_compare,
   call_bool_method,
   call_number_method,
   call_string_method,
+  times,
 }

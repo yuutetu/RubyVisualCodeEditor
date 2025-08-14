@@ -124,6 +124,7 @@ const MY_TOOLBOX = `
   <category name="制御">
     <block type="controls_if"/>
     <block type="logic_compare"/>
+    <block type="times"/>
   </category>
 </xml>
 `
