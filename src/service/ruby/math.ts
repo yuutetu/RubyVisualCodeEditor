@@ -1,6 +1,12 @@
 import * as Blockly from 'blockly/core'
 import {RUBY_ORDER, RubyGenerator, RubyOrder} from "./ruby";
 
+const math_number = (block: Blockly.Block, generator: RubyGenerator): [string, number] => {
+  // Numeric value.
+  const code = block.getFieldValue('NUM') || '0';
+  return [code, RUBY_ORDER.ATOMIC];
+}
+
 const math_arithmetic = (block: Blockly.Block, generator: RubyGenerator): [string, number] => {
   // Arithmetic operations.
   const OPERATORS: Record<string, [string, RubyOrder]> = {

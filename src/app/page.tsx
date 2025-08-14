@@ -97,9 +97,9 @@ const MY_TOOLBOX = `
   </category>
   <category name="リテラル">
     <block type="text"/>
+    <block type="math_number"/>
   </category>
-  <category name="値/演算">
-<!--    <block type="math_number"/>-->
+  <category name="変数/演算">
     <block type="variables_set"/>
     <block type="variables_get"/>
     <block type="string_slice"/>
