@@ -24,5 +24,6 @@ const math_arithmetic = (block: Blockly.Block, generator: RubyGenerator): [strin
 }
 
 export const generators = {
+  math_number,
   math_arithmetic,
 }

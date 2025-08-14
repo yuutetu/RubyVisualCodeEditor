@@ -7,17 +7,29 @@ export const text = (block: Blockly.Block, generator: RubyGenerator): [string, n
   return [generator.quote_(text), RUBY_ORDER.ATOMIC];
 }
 
-export const string_slice = (
+export const get_index = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Get element from array by index.
+  const array = generator.valueToCode(block, 'Array', RUBY_ORDER.NONE) || '[]';
+  const index = block.getFieldValue('Index') || '0';
+  return [`${array}[${index}]`, RUBY_ORDER.ATOMIC];
+}
+
+export const slice = (
   block: Blockly.Block,
   generator: RubyGenerator,
 ): [string, number] => {
   // Get slice from string.
   const string = generator.valueToCode(block, 'String', RUBY_ORDER.NONE) || '""';
-  const range = block.getFieldValue('Range') || '0..-1';
-  return [`${string}[${range}]`, RUBY_ORDER.ATOMIC];
+  const start = generator.valueToCode(block, 'Index', RUBY_ORDER.NONE) || '0';
+  const count = generator.valueToCode(block, 'Count', RUBY_ORDER.NONE) || '0';
+  return [`${string}[${start},${count}]`, RUBY_ORDER.ATOMIC];
 }
 
 export const generators = {
   text,
-  string_slice,
+  slice,
+  get_index,
 }

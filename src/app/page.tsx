@@ -102,10 +102,9 @@ const MY_TOOLBOX = `
   <category name="変数/演算">
     <block type="variables_set"/>
     <block type="variables_get"/>
-    <block type="string_slice"/>
     <block type="math_arithmetic"/>
-    <block type="array_get_index"/>
-    <block type="array_slice"/>
+    <block type="get_index"/>
+    <block type="slice"/>
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
