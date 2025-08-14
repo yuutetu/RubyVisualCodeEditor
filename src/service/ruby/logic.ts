@@ -49,7 +49,54 @@ export const logic_compare = (
   return [`${argument0} ${operator} ${argument1}`, RUBY_ORDER.RELATIONAL];
 }
 
+const call_bool_method = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Call a boolean method on an object.
+  const object = generator.valueToCode(block, 'Object', RUBY_ORDER.NONE) || 'nil';
+  const method = block.getFieldValue('Method') || '';
+  const args = generator.valueToCode(block, 'Args', RUBY_ORDER.NONE) || '';
+  return [`${object}.${method}?(${args})`, RUBY_ORDER.ATOMIC];
+}
+
+const call_number_method = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Call a number method on an object.
+  const object = generator.valueToCode(block, 'Object', RUBY_ORDER.NONE) || 'nil';
+  const method = block.getFieldValue('Method') || '';
+  const args = generator.valueToCode(block, 'Args', RUBY_ORDER.NONE) || '';
+  return [`${object}.${method}(${args})`, RUBY_ORDER.ATOMIC];
+}
+
+const call_string_method = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Call a string method on an object.
+  const object = generator.valueToCode(block, 'Object', RUBY_ORDER.NONE) || 'nil';
+  const method = block.getFieldValue('Method') || '';
+  const args = generator.valueToCode(block, 'Args', RUBY_ORDER.NONE) || '';
+  return [`${object}.${method}(${args})`, RUBY_ORDER.ATOMIC];
+}
+
+const times = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): string => {
+  // Loop a specific number of times.
+  const times = generator.valueToCode(block, 'TIMES', RUBY_ORDER.NONE) || '0';
+  const branch = generator.statementToCode(block, 'DO') || '';
+  return `${times}.times do\n${branch}end\n`;
+}
+
 export const generators = {
   controls_if,
   logic_compare,
+  call_bool_method,
+  call_number_method,
+  call_string_method,
+  times,
 }

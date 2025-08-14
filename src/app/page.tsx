@@ -6,6 +6,8 @@ import {UseBlocklyProps} from "react-blockly/dist/BlocklyWorkspaceProps";
 import {rubyGenerator} from "@/service/ruby/ruby";
 import { EditorView } from '@codemirror/view'
 import dynamic from "next/dynamic";
+import * as Blockly from "blockly";
+
 
 const ReactCodeMirror = dynamic(() => import('@uiw/react-codemirror'), { ssr: false });
 
@@ -15,7 +17,19 @@ export default function Home() {
     ref: ref,
     initialXml: "<xml></xml>",
     toolboxConfiguration: MY_TOOLBOX,
-    workspaceConfiguration: {},
+    workspaceConfiguration: {
+      horizontalLayout: true,
+      sounds: false,
+      theme: {
+        ...Blockly.Themes.Zelos,
+        componentStyles: {
+          ...Blockly.Themes.Zelos.componentStyles,
+          // https://colorhunt.co/palette/222831393e46948979dfd0b8
+          workspaceBackgroundColour: '#dfd0b8',
+          toolboxBackgroundColour: '#222831',
+        },
+      },
+    },
     // WARN: fix type
   } as UseBlocklyProps)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -87,26 +101,30 @@ const MY_TOOLBOX = `
 <xml>
   <category name="IO">
     <block type="io_read_line"/>
+    <block type="io_read_number"/>
     <block type="io_read_numbers"/>
     <block type="io_puts"/>
   </category>
   <category name="リテラル">
     <block type="text"/>
+    <block type="math_number"/>
   </category>
-  <category name="値/演算">
-<!--    <block type="math_number"/>-->
+  <category name="変数/演算">
     <block type="variables_set"/>
     <block type="variables_get"/>
-    <block type="string_slice"/>
     <block type="math_arithmetic"/>
-    <block type="array_get_index"/>
-    <block type="array_slice"/>
+    <block type="get_index"/>
+    <block type="slice"/>
+    <block type="call_bool_method"/>
+    <block type="call_number_method"/>
+    <block type="call_string_method"/>
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
   <category name="制御">
     <block type="controls_if"/>
     <block type="logic_compare"/>
+    <block type="times"/>
   </category>
 </xml>
 `
