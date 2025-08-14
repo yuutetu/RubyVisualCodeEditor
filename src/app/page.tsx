@@ -20,6 +20,15 @@ export default function Home() {
     workspaceConfiguration: {
       horizontalLayout: true,
       sounds: false,
+      theme: {
+        ...Blockly.Themes.Zelos,
+        componentStyles: {
+          ...Blockly.Themes.Zelos.componentStyles,
+          // https://colorhunt.co/palette/222831393e46948979dfd0b8
+          workspaceBackgroundColour: '#dfd0b8',
+          toolboxBackgroundColour: '#222831',
+        },
+      },
     },
     // WARN: fix type
   } as UseBlocklyProps)
