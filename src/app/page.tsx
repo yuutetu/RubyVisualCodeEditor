@@ -92,6 +92,7 @@ const MY_TOOLBOX = `
 <xml>
   <category name="IO">
     <block type="io_read_line"/>
+    <block type="io_read_number"/>
     <block type="io_read_numbers"/>
     <block type="io_puts"/>
   </category>

@@ -5,6 +5,11 @@ const io_read_line = (): [string, number] => {
   return ["gets.chomp", RUBY_ORDER.ATOMIC]
 }
 
+const io_read_number = (): [string, number] => {
+  // In Ruby, you can read a number from input and convert it to an integer.
+  return ["gets.to_i", RUBY_ORDER.ATOMIC]
+}
+
 const io_puts = (
   block: Blockly.Block,
   generator: RubyGenerator,
@@ -21,6 +26,7 @@ const io_read_numbers = (): [string, number] => {
 
 export const generators = {
   io_read_line,
+  io_read_number,
   io_puts,
   io_read_numbers,
 }

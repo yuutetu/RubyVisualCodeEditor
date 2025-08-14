@@ -11,6 +11,14 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "colour": 270
   },
   {
+    "type": "io_read_number",
+    "tooltip": "Read Number",
+    "helpUrl": "",
+    "message0": "read number",
+    "output": "Number",
+    "colour": 270
+  },
+  {
     "type": "io_puts",
     "tooltip": "Print",
     "helpUrl": "",
