@@ -6,6 +6,8 @@ import {UseBlocklyProps} from "react-blockly/dist/BlocklyWorkspaceProps";
 import {rubyGenerator} from "@/service/ruby/ruby";
 import { EditorView } from '@codemirror/view'
 import dynamic from "next/dynamic";
+import * as Blockly from "blockly";
+
 
 const ReactCodeMirror = dynamic(() => import('@uiw/react-codemirror'), { ssr: false });
 
@@ -15,7 +17,10 @@ export default function Home() {
     ref: ref,
     initialXml: "<xml></xml>",
     toolboxConfiguration: MY_TOOLBOX,
-    workspaceConfiguration: {},
+    workspaceConfiguration: {
+      horizontalLayout: true,
+      sounds: false,
+    },
     // WARN: fix type
   } as UseBlocklyProps)
   const [drawerOpen, setDrawerOpen] = useState(false)
