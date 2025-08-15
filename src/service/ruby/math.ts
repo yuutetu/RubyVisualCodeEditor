@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core'
 import {RUBY_ORDER, RubyGenerator, RubyOrder} from "./ruby";
 
-const math_number = (block: Blockly.Block, generator: RubyGenerator): [string, number] => {
+const math_number = (block: Blockly.Block): [string, number] => {
   // Numeric value.
   const code = block.getFieldValue('NUM') || '0';
   return [code, RUBY_ORDER.ATOMIC];

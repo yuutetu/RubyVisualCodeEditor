@@ -12,7 +12,7 @@ import {useSearchParams} from "next/navigation";
 
 const ReactCodeMirror = dynamic(() => import('@uiw/react-codemirror'), { ssr: false });
 
-export const Home = () => {
+const Home = () => {
   const searchParams = useSearchParams()
   const ref = useRef<HTMLDivElement | null>(null)
   const xmlBase64 = searchParams.get('xmlBase64') || '';

@@ -1,4 +1,3 @@
-import * as Blockly from 'blockly/core'
 import * as io from './io'
 import * as string from './string'
 import * as array from './array'
