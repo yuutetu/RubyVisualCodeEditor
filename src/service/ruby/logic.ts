@@ -20,9 +20,8 @@ export const controls_if = (
     n++;
   }
 
-  // else branch
-  const elseBranch = generator.statementToCode(block, 'ELSE');
-  if (elseBranch) {
+  if (block.getInput('ELSE')) {
+    const elseBranch = generator.statementToCode(block, 'ELSE');
     code += `\nelse\n${elseBranch}`;
   }
 

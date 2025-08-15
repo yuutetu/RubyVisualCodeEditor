@@ -13,7 +13,7 @@ export const get_index = (
 ): [string, number] => {
   // Get element from array by index.
   const array = generator.valueToCode(block, 'Array', RUBY_ORDER.NONE) || '[]';
-  const index = block.getFieldValue('Index') || '0';
+  const index = generator.valueToCode(block, 'Index', RUBY_ORDER.NONE) || '0';
   return [`${array}[${index}]`, RUBY_ORDER.ATOMIC];
 }
 
