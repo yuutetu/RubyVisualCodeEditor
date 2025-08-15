@@ -71,12 +71,14 @@ export const Home = () => {
     <div className="h-dvh flex flex-col">
       <header className="p-2 flex justify-between border-b">
         Ruby Block Editor
-        <button className="rounded-lg" onClick={() => openDrawerAndGenerate()}>
-          Gen
-        </button>
-        <button className="rounded-lg" onClick={() => exportUrlCopy()}>
-          Export
-        </button>
+        <div className="flex gap-4">
+          <button className="rounded-lg bg-blue-800 px-4" onClick={() => openDrawerAndGenerate()}>
+            Gen Ruby
+          </button>
+          <button className="rounded-lg bg-blue-800 px-4" onClick={() => exportUrlCopy()}>
+            Export
+          </button>
+        </div>
       </header>
       <div className="flex-1 z-0">
         <div ref={ref} className="w-full h-full" />
