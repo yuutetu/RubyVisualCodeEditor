@@ -1,21 +1,31 @@
 'use client'
 import {useBlocklyWorkspace} from "react-blockly"
 import '@/service/blocks/blocks'
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {UseBlocklyProps} from "react-blockly/dist/BlocklyWorkspaceProps";
 import {rubyGenerator} from "@/service/ruby/ruby";
 import { EditorView } from '@codemirror/view'
 import dynamic from "next/dynamic";
 import * as Blockly from "blockly";
+import {useSearchParams} from "next/navigation";
 
 
 const ReactCodeMirror = dynamic(() => import('@uiw/react-codemirror'), { ssr: false });
 
-export default function Home() {
+export const Home = () => {
+  const searchParams = useSearchParams()
   const ref = useRef<HTMLDivElement | null>(null)
-  const {workspace: ws} = useBlocklyWorkspace({
+  const xmlBase64 = searchParams.get('xmlBase64') || '';
+  const initialXml = xmlBase64 != undefined ?
+    atob(decodeURIComponent(xmlBase64)) : "{}"
+
+  useEffect(() => {
+    console.log(initialXml)
+  }, [initialXml])
+
+  const {workspace: ws, json, xml} = useBlocklyWorkspace({
     ref: ref,
-    initialXml: "<xml></xml>",
+    initialXml: initialXml,
     toolboxConfiguration: MY_TOOLBOX,
     workspaceConfiguration: {
       horizontalLayout: true,
@@ -35,9 +45,12 @@ export default function Home() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [code, setCode] = useState('')
 
+  useEffect(() => {
+    console.log(json, xml)
+  }, [json, xml])
+
   const openDrawerAndGenerate = useCallback(() => {
     if (!ws) return
-    console.log('Generating code from Blockly workspace:', ws)
     const generated = rubyGenerator.workspaceToCode(ws)
     setCode(generated)
     setDrawerOpen(true);
@@ -45,16 +58,24 @@ export default function Home() {
 
   const copy = useCallback(() => {
     if (!code) return;
-    console.log(code)
     navigator.clipboard.writeText(code);
   }, [code]);
+
+  const exportUrlCopy = () => {
+    const xmlBase64 = encodeURIComponent(btoa(xml || ''));
+    const url = `${location.origin}${location.pathname}?xmlBase64=${xmlBase64}`;
+    navigator.clipboard.writeText(url);
+  }
 
   return (
     <div className="h-dvh flex flex-col">
       <header className="p-2 flex justify-between border-b">
         Ruby Block Editor
         <button className="rounded-lg" onClick={() => openDrawerAndGenerate()}>
-          Gen Ruby Code
+          Gen
+        </button>
+        <button className="rounded-lg" onClick={() => exportUrlCopy()}>
+          Export
         </button>
       </header>
       <div className="flex-1 z-0">
@@ -128,3 +149,5 @@ const MY_TOOLBOX = `
   </category>
 </xml>
 `
+
+export default Home;
