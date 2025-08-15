@@ -138,9 +138,7 @@ const MY_TOOLBOX = `
     <block type="math_arithmetic"/>
     <block type="get_index"/>
     <block type="slice"/>
-    <block type="call_bool_method"/>
-    <block type="call_number_method"/>
-    <block type="call_string_method"/>
+    <block type="call_method"/>
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
