@@ -6,7 +6,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "type": "call_method",
     "tooltip": "Call method",
     "helpUrl": "",
-    "message0": "number %1.%2(%3)",
+    "message0": "%1.%2(%3)",
     "args0": [
       {
         "type": "input_value",
@@ -22,6 +22,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Args",
       }
     ],
+    "output": "Number",
     "colour": 270,
   },
   {
