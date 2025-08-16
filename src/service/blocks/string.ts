@@ -12,12 +12,10 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         "type": "input_value",
         "name": "Array",
-        "check": ["String", "Array"],
       },
       {
         "type": "input_value",
         "name": "Index",
-        "check": "Number",
       },
     ],
     "output": "String",
@@ -32,17 +30,14 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         "type": "input_value",
         "name": "String",
-        "check": ["String", "Array"],
       },
       {
         "type": "input_value",
         "name": "Index",
-        "check": "Number"
       },
       {
         "type": "input_value",
         "name": "Count",
-        "check": "Number"
       },
     ],
     "output": "String",

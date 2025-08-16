@@ -25,7 +25,7 @@ export const controls_if = (
     code += `\nelse\n${elseBranch}`;
   }
 
-  code += '\nend';
+  code += '\nend\n';
   return code;
 }
 
