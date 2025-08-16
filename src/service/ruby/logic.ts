@@ -72,7 +72,7 @@ const times = (
 const lambda = (
   block: Blockly.Block,
   generator: RubyGenerator,
-) => {
+): [string, number] => {
   // Lambda function definition.
   const params = block.getFieldValue('PARAMS') || '';
   const body = generator.statementToCode(block, 'BODY') || '';
