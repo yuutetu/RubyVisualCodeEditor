@@ -139,6 +139,7 @@ const MY_TOOLBOX = `
     <block type="get_index"/>
     <block type="slice"/>
     <block type="call_method"/>
+    <block type="call_method_with_proc"/>
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
@@ -146,6 +147,7 @@ const MY_TOOLBOX = `
     <block type="controls_if"/>
     <block type="logic_compare"/>
     <block type="times"/>
+    <block type="lambda"/>
   </category>
 </xml>
 `

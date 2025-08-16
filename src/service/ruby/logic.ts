@@ -69,9 +69,39 @@ const times = (
   return `${times}.times do\n${branch}end\n`;
 }
 
+const lambda = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Lambda function definition.
+  const params = block.getFieldValue('PARAMS') || '';
+  const body = generator.statementToCode(block, 'BODY') || '';
+  const returnVal = generator.valueToCode(block, 'RETURN', RUBY_ORDER.NONE) || 'nil';
+  let code = '';
+  if (body === '') {
+    code = `Proc.new { |${params}| ${returnVal}}`;
+  } else {
+    code = `Proc.new { |${params}| \n${body}\nreturn ${returnVal}\n}`;
+  }
+  return [code, RUBY_ORDER.FUNCTION_CALL];
+}
+
+const call_method_with_proc = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Call a method with a Proc.
+  const object = generator.valueToCode(block, 'Object', RUBY_ORDER.NONE) || 'nil';
+  const method = block.getFieldValue('Method') || '';
+  const proc = generator.valueToCode(block, 'Proc', RUBY_ORDER.NONE) || '(Proc.new { |x| false })';
+  return [`${object}.${method}(&${proc})`, RUBY_ORDER.ATOMIC];
+}
+
 export const generators = {
   controls_if,
   logic_compare,
   call_method,
   times,
+  lambda,
+  call_method_with_proc,
 }

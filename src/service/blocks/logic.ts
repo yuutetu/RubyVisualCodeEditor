@@ -43,6 +43,53 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "previousStatement": null,
     "nextStatement": null,
     "colour": 270,
+  },
+  {
+    "type": "lambda",
+    "message0": "lambda %1 do %2 return %3",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "PARAMS",
+        "text": ""
+      },
+      {
+        "type": "input_statement",
+        "name": "BODY",
+      },
+      {
+        "type": "input_value",
+        "name": "RETURN",
+        "align": "RIGHT",
+      }
+    ],
+    "output": "Proc",
+    "colour": 230,
+    "tooltip": "Ruby lambda",
+    "helpUrl": ""
+  },
+  {
+    "type": "call_method_with_proc",
+    "tooltip": "Call method with a Proc",
+    "helpUrl": "",
+    "message0": "%1.%2(proc %3)",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "Object",
+      },
+      {
+        "type": "field_input",
+        "name": "Method",
+        "text": "",
+      },
+      {
+        "type": "input_value",
+        "name": "Proc",
+      }
+    ],
+    "output": "Number",
+    "colour": 270,
   }
 ])
 
