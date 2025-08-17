@@ -95,6 +95,22 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     ],
     "output": null,
     "colour": 270,
+  },
+  {
+    "type": "custom_code",
+    "tooltip": "Custom code block",
+    "helpUrl": "",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CODE",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 270,
   }
 ])
 

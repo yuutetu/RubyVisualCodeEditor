@@ -98,6 +98,12 @@ const call_method_with_proc = (
   return [`${object}.${method}(&${proc})`, RUBY_ORDER.ATOMIC];
 }
 
+const custom_code = (block: Blockly.Block, generator: RubyGenerator): string => {
+  // Custom code block.
+  const code = block.getFieldValue('CODE') || '';
+  return `${code}\n`;
+}
+
 export const generators = {
   controls_if,
   logic_compare,
@@ -105,4 +111,5 @@ export const generators = {
   times,
   lambda,
   call_method_with_proc,
+  custom_code,
 }
