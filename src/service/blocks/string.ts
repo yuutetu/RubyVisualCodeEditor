@@ -18,7 +18,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Index",
       },
     ],
-    "output": "String",
+    "output": null,
     "colour": 270,
   },
   {
@@ -40,7 +40,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Count",
       },
     ],
-    "output": "String",
+    "output": null,
     "colour": 270,
   }
 ])

@@ -22,18 +22,23 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Args",
       }
     ],
-    "output": "Number",
+    "output": null,
     "colour": 270,
   },
   {
     "type": "times",
     "tooltip": "Repeat a block multiple times",
     "helpUrl": "",
-    "message0": "repeat %1 times %2",
+    "message0": "repeat %1 index variable %2 times %3",
     "args0": [
       {
         "type": "input_value",
         "name": "TIMES",
+      },
+      {
+        "type": "field_input",
+        "name": "INDEX",
+        "text": "i"
       },
       {
         "type": "input_statement",
@@ -63,7 +68,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "align": "RIGHT",
       }
     ],
-    "output": "Proc",
+    "output": null,
     "colour": 230,
     "tooltip": "Ruby lambda",
     "helpUrl": ""
@@ -88,7 +93,23 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Proc",
       }
     ],
-    "output": "Number",
+    "output": null,
+    "colour": 270,
+  },
+  {
+    "type": "custom_code",
+    "tooltip": "Custom code block",
+    "helpUrl": "",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_input",
+        "name": "CODE",
+        "text": ""
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": 270,
   }
 ])

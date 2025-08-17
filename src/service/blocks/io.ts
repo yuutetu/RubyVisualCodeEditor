@@ -7,7 +7,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "tooltip": "Read Line",
     "helpUrl": "",
     "message0": "read line",
-    "output": "String",
+    "output": null,
     "colour": 270
   },
   {
@@ -15,7 +15,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "tooltip": "Read Number",
     "helpUrl": "",
     "message0": "read number",
-    "output": "Number",
+    "output": null,
     "colour": 270
   },
   {
@@ -38,7 +38,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "tooltip": "Read multiple numbers",
     "helpUrl": "",
     "message0": "read numbers of line",
-    "output": "Array",
+    "output": null,
     "colour": 270,
   },
 ])

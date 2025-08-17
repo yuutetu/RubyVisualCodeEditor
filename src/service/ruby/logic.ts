@@ -65,8 +65,9 @@ const times = (
 ): string => {
   // Loop a specific number of times.
   const times = generator.valueToCode(block, 'TIMES', RUBY_ORDER.NONE) || '0';
+  const index = block.getFieldValue('INDEX') || 'i';
   const branch = generator.statementToCode(block, 'DO') || '';
-  return `${times}.times do\n${branch}end\n`;
+  return `${times}.times do |${index}|\n${branch}end\n`;
 }
 
 const lambda = (
@@ -97,6 +98,12 @@ const call_method_with_proc = (
   return [`${object}.${method}(&${proc})`, RUBY_ORDER.ATOMIC];
 }
 
+const custom_code = (block: Blockly.Block, generator: RubyGenerator): string => {
+  // Custom code block.
+  const code = block.getFieldValue('CODE') || '';
+  return `${code}\n`;
+}
+
 export const generators = {
   controls_if,
   logic_compare,
@@ -104,4 +111,5 @@ export const generators = {
   times,
   lambda,
   call_method_with_proc,
+  custom_code,
 }

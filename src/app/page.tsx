@@ -148,6 +148,7 @@ const MY_TOOLBOX = `
     <block type="logic_compare"/>
     <block type="times"/>
     <block type="lambda"/>
+    <block type="custom_code"/>
   </category>
 </xml>
 `
