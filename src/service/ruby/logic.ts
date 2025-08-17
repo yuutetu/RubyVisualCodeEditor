@@ -56,6 +56,9 @@ const call_method = (
   const object = generator.valueToCode(block, 'Object', RUBY_ORDER.NONE) || 'nil';
   const method = block.getFieldValue('Method') || '';
   const args = generator.valueToCode(block, 'Args', RUBY_ORDER.NONE) || '';
+  if (args === '') {
+    return [`${object}.${method}`, RUBY_ORDER.ATOMIC];
+  }
   return [`${object}.${method}(${args})`, RUBY_ORDER.ATOMIC];
 }
 
