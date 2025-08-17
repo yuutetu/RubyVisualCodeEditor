@@ -22,7 +22,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Args",
       }
     ],
-    "output": "Number",
+    "output": null,
     "colour": 270,
   },
   {
@@ -68,7 +68,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "align": "RIGHT",
       }
     ],
-    "output": "Proc",
+    "output": null,
     "colour": 230,
     "tooltip": "Ruby lambda",
     "helpUrl": ""
@@ -93,7 +93,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
         "name": "Proc",
       }
     ],
-    "output": "Number",
+    "output": null,
     "colour": 270,
   }
 ])
