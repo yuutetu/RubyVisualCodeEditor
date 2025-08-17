@@ -65,8 +65,9 @@ const times = (
 ): string => {
   // Loop a specific number of times.
   const times = generator.valueToCode(block, 'TIMES', RUBY_ORDER.NONE) || '0';
+  const index = block.getFieldValue('INDEX') || 'i';
   const branch = generator.statementToCode(block, 'DO') || '';
-  return `${times}.times do\n${branch}end\n`;
+  return `${times}.times do |${index}|\n${branch}end\n`;
 }
 
 const lambda = (
