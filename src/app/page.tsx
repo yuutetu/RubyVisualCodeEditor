@@ -140,6 +140,8 @@ const MY_TOOLBOX = `
     <block type="slice"/>
     <block type="call_method"/>
     <block type="call_method_with_proc"/>
+    <block type="range"/>
+    <block type="lists_create_with"/>
 <!--    <block type="logic_compare"/>-->
 <!--    <block type="text_join"/>-->
   </category>
