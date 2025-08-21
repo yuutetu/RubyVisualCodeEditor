@@ -15,7 +15,7 @@ const io_puts = (
   generator: RubyGenerator,
 ): string => {
   const argument0 = generator.valueToCode(block, 'VALUE', RUBY_ORDER.NONE) || '""';
-  return `puts ${argument0}`
+  return `puts ${argument0}\n`
 }
 
 const io_read_numbers = (): [string, number] => {
