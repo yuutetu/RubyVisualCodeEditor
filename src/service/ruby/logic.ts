@@ -62,6 +62,20 @@ const call_method = (
   return [`${object}.${method}(${args})`, RUBY_ORDER.ATOMIC];
 }
 
+const call_method_without_return = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): string => {
+  // Call a method without expecting a return value.
+  const object = generator.valueToCode(block, 'Object', RUBY_ORDER.NONE) || 'nil';
+  const method = block.getFieldValue('Method') || '';
+  const args = generator.valueToCode(block, 'Args', RUBY_ORDER.NONE) || '';
+  if (args === '') {
+    return `${object}.${method}\n`;
+  }
+  return `${object}.${method}(${args})\n`;
+}
+
 const times = (
   block: Blockly.Block,
   generator: RubyGenerator,
@@ -111,6 +125,7 @@ export const generators = {
   controls_if,
   logic_compare,
   call_method,
+  call_method_without_return,
   times,
   lambda,
   call_method_with_proc,
