@@ -26,6 +26,30 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "colour": 270,
   },
   {
+    "type": "call_method_without_return",
+    "tooltip": "Call method without return",
+    "helpUrl": "",
+    "message0": "%1.%2(%3)",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "Object",
+      },
+      {
+        "type": "field_input",
+        "name": "Method",
+        "text": "",
+      },
+      {
+        "type": "input_value",
+        "name": "Args",
+      }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 270,
+  },
+  {
     "type": "times",
     "tooltip": "Repeat a block multiple times",
     "helpUrl": "",

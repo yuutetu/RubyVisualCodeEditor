@@ -17,6 +17,17 @@ export const get_index = (
   return [`${array}[${index}]`, RUBY_ORDER.ATOMIC];
 }
 
+export const set_index = (
+  block: Blockly.Block,
+  generator: RubyGenerator,
+): [string, number] => {
+  // Set element in array by index.
+  const array = generator.valueToCode(block, 'Array', RUBY_ORDER.NONE) || '[]';
+  const index = generator.valueToCode(block, 'Index', RUBY_ORDER.NONE) || '0';
+  const value = generator.valueToCode(block, 'Value', RUBY_ORDER.NONE) || 'nil';
+  return [`${array}[${index}] = ${value}`, RUBY_ORDER.ATOMIC];
+}
+
 export const slice = (
   block: Blockly.Block,
   generator: RubyGenerator,
@@ -32,4 +43,5 @@ export const generators = {
   text,
   slice,
   get_index,
+  set_index,
 }

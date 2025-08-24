@@ -22,6 +22,29 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     "colour": 270,
   },
   {
+    "type": "set_index",
+    "tooltip": "Set an item in array",
+    "helpUrl": "",
+    "message0": "%1[%2] = %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "Array",
+      },
+      {
+        "type": "input_value",
+        "name": "Index",
+      },
+      {
+        "type": "input_value",
+        "name": "Value",
+      },
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 270,
+  },
+  {
     "type": "slice",
     "tooltip": "Get slice from array",
     "helpUrl": "",
