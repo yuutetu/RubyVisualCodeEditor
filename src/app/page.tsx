@@ -28,7 +28,7 @@ const Home = () => {
     initialXml: initialXml,
     toolboxConfiguration: MY_TOOLBOX,
     workspaceConfiguration: {
-      horizontalLayout: true,
+      horizontalLayout: false,
       sounds: false,
       theme: {
         ...Blockly.Themes.Zelos,
@@ -72,29 +72,28 @@ const Home = () => {
       <header className="p-2 flex justify-between border-b">
         Ruby Block Editor
         <div className="flex gap-4">
-          <button className="rounded-lg bg-blue-800 px-4" onClick={() => openDrawerAndGenerate()}>
+          <button className="rounded-lg bg-blue-800 px-4 py-2 text-white min-h-[44px]" onClick={() => openDrawerAndGenerate()}>
             Gen Ruby
           </button>
-          <button className="rounded-lg bg-blue-800 px-4" onClick={() => exportUrlCopy()}>
+          <button className="rounded-lg bg-blue-800 px-4 py-2 text-white min-h-[44px]" onClick={() => exportUrlCopy()}>
             Export
           </button>
         </div>
       </header>
-      <div className="flex-1 z-0">
+      <div className="flex-1 z-0" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <div ref={ref} className="w-full h-full" />
       </div>
       {/* 全画面 Drawer */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 bg-white flex flex-col">
-          <div className="p-2 flex items-center justify-between border-b bg-black"
-               style={{ paddingBottom: 'calc(env(safe-area-inset-bottom)/4)' }}>
+          <div className="p-2 flex items-center justify-between border-b bg-black">
             <span>Ruby コード</span>
             <div className="space-x-2">
-              <button onClick={copy}>コピー</button>
-              <button onClick={() => setDrawerOpen(false)}>閉じる</button>
+              <button className="rounded-lg bg-blue-700 px-4 py-2 text-white min-h-[44px]" onClick={copy}>コピー</button>
+              <button className="rounded-lg bg-gray-600 px-4 py-2 text-white min-h-[44px]" onClick={() => setDrawerOpen(false)}>閉じる</button>
             </div>
           </div>
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 overflow-hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
             {/* CodeMirror 本体（読み取り専用 + 折り返し） */}
             <ReactCodeMirror
               value={code}
